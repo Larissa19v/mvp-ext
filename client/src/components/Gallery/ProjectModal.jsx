@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectModal({ project, setProjectModalOpen }) {
+  const navigate= useNavigate();
+  const handleRegister =() => {
+    navigate("/register");
+  };
   //Create modal to show project info
   return (
     <div
@@ -30,14 +35,16 @@ export default function ProjectModal({ project, setProjectModalOpen }) {
               </li>
               <li>
                 <p>
-                  <h5>Description</h5>
-                  {project.description}
+                  <h5>Materials</h5>
+                  {project.materials}
                 </p>
               </li>
               <li>
                 <p>
-                  <h5>Materials</h5>
-                  {project.materials}
+                  <h5>For more action</h5>
+                  <Link to="/register/" className="link">
+                    Log in
+                  </Link>
                 </p>
               </li>
             </ul>

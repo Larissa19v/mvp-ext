@@ -3,7 +3,8 @@
 --
 
 SET foreign_key_checks = 0;
-DROP TABLE if exists items;
+DROP TABLE if exists projects;
+DROP TABLE IF EXISTS userpalace; 
 SET foreign_key_checks = 1;
 
 --
@@ -21,3 +22,15 @@ CREATE TABLE projects (
 );
 
 INSERT INTO projects (projectname, type, materials, description, image, complete, favorite) VALUES ("My first project", "sewing", "cotton", "a cute cat toy", "", false, false);
+
+
+
+CREATE TABLE userpalace (
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(40) NOT NULL, 
+	username VARCHAR(40) NOT NULL, 
+	password VARCHAR(200) NOT NULL, 
+	email VARCHAR(200) NOT NULL, 
+	PRIMARY KEY (id),
+    UNIQUE (username)
+);

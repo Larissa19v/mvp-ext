@@ -7,17 +7,19 @@
     "migrate": "node model/database.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "nodemon": "^3.0.3",
     "react-icons": "^5.0.1",
-    "react-router-dom": "^6.22.2",
+    "react-router-dom": "^6.22.3",
     "react-youtube": "^10.1.0"
   }
 }

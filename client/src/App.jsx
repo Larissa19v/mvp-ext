@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -6,6 +5,10 @@ import Gallery from "./components/Gallery/Gallery.jsx";
 import Create from "./components/Create/create.jsx";
 import Ideas from "./components/Ideas/Ideas.jsx";
 import Error404 from "./components/Error404.jsx";
+import Register from "./components/Login/Register.jsx";
+import Login from "./components/Login/Login.jsx";
+import PrivateRoute from "./components/Login/PrivateRoute.jsx";
+import UserView from "./components/Login/UserView.jsx";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -45,13 +48,15 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/private" element={<PrivateRoute><UserView /></PrivateRoute>}></Route>
         <Route path="/create" element={<Create setProjects={setProjects} />} />
         <Route
           path="/gallery"
           element={<Gallery projects={projects} setProjects={setProjects} />}
         />
         <Route path="/ideas" element={<Ideas />} />
-
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>

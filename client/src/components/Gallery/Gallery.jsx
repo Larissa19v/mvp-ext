@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-
 import ProjectCard from "./ProjectCard";
-
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "../Navbar";
 

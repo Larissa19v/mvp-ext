@@ -7,7 +7,7 @@ export default function YoutubeIdeas() {
 
   const handleYoutubeFetch = () => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${key}&type=video&part=snippet&safeSearch=strict&q=kids%20craft&maxResults=20`
+      `https://www.googleapis.com/youtube/v3/search?key=${key}&type=video&part=snippet&safeSearch=strict&q=kids%10craft&maxResults=10`
     )
       .then((response) => {
         if (!response.ok) {

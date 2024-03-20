@@ -14,9 +14,7 @@ function Register() {
   });
 
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value });
@@ -45,19 +43,19 @@ function Register() {
       }
     } catch (err) {
       console.log("Error:", err);
-
     }
   };
 
-  return (
-    <div>
-      <div className="container"></div>
-      <div>
-        <Navbar />
-      </div>
 
-      <h3 className="page-header">Register form</h3>
-      <div className="row create-form justify-content-center"></div>
+  return (
+  <div>
+    <div className="container"></div>
+    <div>
+      <Navbar />
+    </div>
+
+    <h3 className="page-header">Register form</h3>
+    <div className="row create-form justify-content-center">
       {/*<div className="row"> */}
       <div className="col-9 offset-1">
         <input
@@ -94,22 +92,22 @@ function Register() {
           placeholder="your password"
         />
         <button className="home-button " onClick={register}>
-          Register
+            Register
         </button>
         <br />
         <br />
         <br />
         <p>
           <h3>Have an account? </h3>
+          <br />
           <Link to="/login/" className="home-button ">
-            Log in
+              Sign in
           </Link>
         </p>
-        {/*</div>*/}
       </div>
-
       <div className="text-danger text-center mt-5">{error}</div>
     </div>
+  </div>
   );
 }
 

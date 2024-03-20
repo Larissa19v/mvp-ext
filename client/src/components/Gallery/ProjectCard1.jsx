@@ -2,7 +2,6 @@ import { useState } from "react";
 
 //Icons
 import { MdFavorite, MdFavoriteBorder, MdEdit } from "react-icons/md";
-import { FaRegCircleCheck, FaRegEye } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 //Project components
@@ -10,7 +9,7 @@ import DeleteProjectButton from "./DeleteProject";
 import ProjectModal from "./ProjectModal";
 import EditProject from "./EditProject";
 
-export default function ProjectCard({ project, setProjects }) {
+export default function ProjectCard1({ project, setProjects }) {
   const [projectModalOpen, setProjectModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [deleteWarning, setDeleteWarning] = useState(false);
@@ -54,10 +53,10 @@ export default function ProjectCard({ project, setProjects }) {
   };
 
   //Function to open the modal for selected project.
-  const openProjectModal = () => {
+  {/*const openProjectModal = () => {
     setSelectedProject(project);
     setProjectModalOpen(true);
-  };
+  };*/}
 
   //Function to toggle edit form
   const viewEditProject = () => {
@@ -71,28 +70,10 @@ export default function ProjectCard({ project, setProjects }) {
       <div>
         <img src={project.image} alt={project.name} className="project-image" />
       </div>
-
       <div className="button-container">
-        {/* Button to call toggleFavorite - gets id of selected project */}
-        <button onClick={(e) => toggleFavorite(project.id)}>
-          {project.favorite ? (
-            <MdFavorite style={{ color: "var(--bright-pink)" }} />
-          ) : (
-            <MdFavoriteBorder style={{ color: "#dadada" }} />
-          )}
-        </button>
-        {/* Button to call toggleComplete */}
 
-        <button onClick={(e) => toggleComplete(project.id)}>
-          {project.complete ? (
-            <FaRegCircleCheck style={{ color: "#399E5A" }} />
-          ) : (
-            <FaRegCircleCheck style={{ color: "#dadada" }} />
-          )}
-        </button>
         {/* Button to call viewEditProject */}
-
-        {/*<button onClick={viewEditProject}>
+        <button onClick={viewEditProject}>
           {openEditProject ? (
             <MdEdit style={{ color: "var(--mid-purple)" }} />
           ) : (
@@ -101,25 +82,15 @@ export default function ProjectCard({ project, setProjects }) {
         </button>
 
         {/* Button opens delete confirmation div. */}
-        {/*<button
+        <button
           onClick={() => {
             setDeleteWarning(true);
             setOpenEditProject(false);
           }}
         >
           <FaRegTrashAlt style={{ color: "var(--grey-blue)" }} />
-        </button>*/}
+        </button>
       </div>
-
-      {/* Opens modal of selected project */}
-      <button
-        onClick={openProjectModal}
-        data-toggle="modal"
-        data-target="#projectModal"
-      >
-        <FaRegEye style={{ color: "var(--grey-blue)" }} />
-      </button>
-
       {/* The "hidden" parts of each projectc card - the delete confirmation, project modal and edit form*/}
       <div>
         {deleteWarning && (

@@ -1,29 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "./SearchProject.css";
 
-export default function SearchProjects() {
+
+export default function SearchProjects({ projects, setFiltProjects}) {
   const [search, setSearch] = useState("");
-
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-  };
-
-  console.log(search);
-
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    setSearch(e.target.value);
+    filterProjects(e.target.value);
   };
 
+  const filterProjects= (search) => {
+    const filtProjects= projects.filter((project) =>
+    project.type.toLowerCase().includes(search.toLowerCase())
+    );
+    setFiltProjects(filtProjects);
+  };
+      
+
   return (
-    <div className="search-bar">
+    <div>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          className="search"
+          type="search"
+          placeholder="Find a project by type"
           value={search}
-          onChange={handleChange}
-          label="search"
-          placeholder="Find a project"
-        ></input>
+          onChange={handleSubmit}
+        />
       </form>
     </div>
   );

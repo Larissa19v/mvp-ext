@@ -1,0 +1,14 @@
+.container {
+  display: flex; 
+
+}
+
+
+.cre,
+.mod {
+  padding: 10px;
+  border: none;
+  margin-right: 10px;
+}
+
+

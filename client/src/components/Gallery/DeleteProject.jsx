@@ -6,6 +6,7 @@ export default function DeleteProjectButton({ project, setProjects }) {
         "Content-Type": "application/json",
       },
     };
+    
 
     fetch(`/api/projects/${project.id}`, options)
       .then((response) => response.json())
@@ -15,6 +16,8 @@ export default function DeleteProjectButton({ project, setProjects }) {
       })
       .catch((error) => console.log(error));
   };
+
+
   return (
     <button
       type="button"

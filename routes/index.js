@@ -145,28 +145,26 @@ router.post("/login", async (req, res) => {
     //1. check if user exists on DB
     //hint: SQL query returns an array, our user should be the first item
     let response = await db(
-      `SELECT * FROM userpalace WHERE username= "${username}"`
-    );
+      `SELECT * FROM userpalace WHERE username= "${username}";`
+    )
     let user = response.data[0];
     //if user found...
     if (user) {
-      const user_id = user.id;
 
       //2. check if pwd correct (compare passwords ⇒ `bcrypt.compare(plainPWD, encryptedPWD)`)
       let doMatch = await bcrypt.compare(password, user.password);
       //3.1 if not correct send error
       if (!doMatch) res.status(401).send({ error: "Password doesnt match" });
-      const token = jwt.sign({ user_id }, supersecret);
+      let token = jwt.sign({ userID: user.id }, supersecret);
       //3.2 else create token using user id (⇒ `jwt.sign()`)
-
       //...and respond with token
-      res.send({ message: "Here is your token", token });
+      res.send({ token });
       //if no user found...
     } else {
       res.status(401).send({ error: "User not found" });
-    }
+    } 
   } catch (err) {
-    res.status(400).send(err);
+    {/*res.status(400).send(err);*/}
   }
 });
 
@@ -183,7 +181,7 @@ router.get("/private", async (req, res) => {
     let payload = jwt.verify(token, supersecret);
     //3. get requested data from DB and respond
     let result = await db(
-      `SELECT * from userpalace WHERE id=${payload.user_id}`
+      `SELECT * from userpalace WHERE id= ${payload.userID}`
     );
     res.send(result.data[0]);
   } catch (err) {

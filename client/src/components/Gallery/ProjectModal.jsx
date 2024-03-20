@@ -7,6 +7,7 @@ export default function ProjectModal({ project, setProjectModalOpen }) {
   const handleRegister =() => {
     navigate("/register");
   };
+  
   //Create modal to show project info
   return (
     <div
@@ -41,9 +42,10 @@ export default function ProjectModal({ project, setProjectModalOpen }) {
               </li>
               <li>
                 <p>
-                  <h5>For more action</h5>
-                  <Link to="/register/" className="link">
-                    Log in
+                  <h5>Want to change?</h5>
+
+                  <Link to="/login/" className="link" >
+                    Sign in
                   </Link>
                 </p>
               </li>

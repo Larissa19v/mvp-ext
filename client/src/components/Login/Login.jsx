@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 
@@ -8,17 +8,28 @@ function Login() {
     password: "",
   });
   const [error, setError] = useState("");
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+      // Check if the user is already logged in
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      navigate("/private");
+      }
+    }, [navigate]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
 
+
   const login = async () => {
     //do the login
-
     try {
       //1. send credentials to server
       let options = {
@@ -28,24 +39,24 @@ function Login() {
         },
         body: JSON.stringify(credentials),
       };
-
       let results = await fetch("/api/login", options);
       //if I got a 200 ok, then user was authorized
       if (results.ok) {
         //2. get token from server and store in localStorage
         let data = await results.json();
-        console.log(data);
         localStorage.setItem("token", data.token);
         //3. redirect user to Private Page
         navigate("/private");
       } else {
-        console.log(data);
-        setError(data.error);
+        {/*let data= await results.json();*/}
+        setError("Invalid username or password");
+        
       }
     } catch (err) {
       console.log(err);
     }
   };
+  
 
   return (
     <div>
@@ -53,11 +64,13 @@ function Login() {
       <div>
         <Navbar />
       </div>
-
-      <h3 className="page-header">Login form</h3>
-      <div className="row create-form justify-content-center"></div>
-
+      <h3 className="page-header">Hello, sign in!</h3>
+      <div className="row create-form justify-content-center">
         <div className="col-9 offset-1">
+          {isLoggedIn ? (
+            <p>Already logged in!</p>
+          ) : (
+            <>
           <input
             value={credentials.username}
             onChange={handleChange}
@@ -75,10 +88,13 @@ function Login() {
             placeholder="your password"
           />
           <button className="home-button" onClick={login}>
-            Log in
+            Sign in
           </button>
-        </div>
-      <div className="text-danger text-center mt-5">{error}</div>
+          {error && <div className="text-danger text-center mt-2">{error}</div>}
+        </>
+        )}
+      </div>
+    </div>
     </div>
   );
 }

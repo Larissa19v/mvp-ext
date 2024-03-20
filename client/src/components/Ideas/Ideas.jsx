@@ -1,5 +1,5 @@
 import { useState } from "react";
-import YoutubeIdeas from "./YoutubeIdeas";
+{/*import YoutubeIdeas from "./YoutubeIdeas";*/}
 import ImageIdeas from "./ImageIdeas";
 import Navbar from "../Navbar";
 
@@ -37,9 +37,9 @@ export default function Ideas() {
             <ImageIdeas />
           </div>
 
-          <div className="col col-lg-6 p-5">
+          {/*<div className="col col-lg-6 p-5">
             <YoutubeIdeas />
-          </div>
+  </div>*/}
         </div>
       </div>
     </div>

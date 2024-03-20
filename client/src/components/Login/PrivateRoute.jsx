@@ -4,16 +4,15 @@ import { Navigate } from "react-router-dom";
 
 function PrivateRoute(props) {
     // Redirect to /login if anonymous user
-    if (!localStorage.getItem("token")) {
-        return <Navigate to="/login" />;
-    }
-
+  if (!localStorage.getItem("token")) {
+    return <Navigate to="/login" />;
+  }
     // else Render child component(s)
-    return (
-        <>
-            {props.children}
-        </>
-    );
+  return (
+    <>
+      {props.children}
+    </>
+  );
 }
 
 export default PrivateRoute;

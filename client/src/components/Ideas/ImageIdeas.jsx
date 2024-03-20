@@ -23,6 +23,7 @@ export default function ImageIdeas() {
         console.error("Error:", error);
       });
   };
+  
 
   return (
     <div className="image-ideas-container">

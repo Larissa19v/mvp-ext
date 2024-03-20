@@ -2,17 +2,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import Gallery from "./components/Gallery/Gallery.jsx";
+import Gallery1 from "./components/Gallery/Gallery1.jsx";
 import Create from "./components/Create/create.jsx";
+import Create1 from "./components/Create/Create1.jsx";
 import Ideas from "./components/Ideas/Ideas.jsx";
 import Error404 from "./components/Error404.jsx";
 import Register from "./components/Login/Register.jsx";
 import Login from "./components/Login/Login.jsx";
 import PrivateRoute from "./components/Login/PrivateRoute.jsx";
 import UserView from "./components/Login/UserView.jsx";
-
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Link } from "react-router-dom";
+
 
 export function Button({ children, onClick }) {
   return (
@@ -25,6 +27,7 @@ export default App;
 
 function App() {
   const [projects, setProjects] = useState([]);
+
 
   useEffect(() => {
     fetch("/api/projects")
@@ -44,18 +47,18 @@ function App() {
       });
   }, []);
 
+  
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
+        {/*<Route path="/register" element={<Register />} />*/}
         <Route path="/login" element={<Login />} />
-        <Route path="/private" element={<PrivateRoute><UserView /></PrivateRoute>}></Route>
+        <Route path="/create1" element={<Create1 />} />
+        <Route path="/private" element={<PrivateRoute><UserView /></PrivateRoute>} /> 
         <Route path="/create" element={<Create setProjects={setProjects} />} />
-        <Route
-          path="/gallery"
-          element={<Gallery projects={projects} setProjects={setProjects} />}
-        />
+        <Route path="/gallery" element={<Gallery projects={projects} setProjects={setProjects} />} />
+        <Route path="/gallery1" element={<Gallery1 projects={projects} setProjects={setProjects} />} />
         <Route path="/ideas" element={<Ideas />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
@@ -75,7 +78,7 @@ function App() {
         </div>
         <div className="link-button">
           <Button>
-            <Link to="/gallery">See My Projects 🖼️</Link>
+            <Link to="/gallery">See Projects 🖼️</Link>
           </Button>
         </div>
         <div className="link-button">
